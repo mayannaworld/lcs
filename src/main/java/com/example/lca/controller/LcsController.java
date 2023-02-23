@@ -4,25 +4,19 @@ import com.example.lca.models.LcsRequest;
 import com.example.lca.models.LcsResponse;
 import com.example.lca.service.LcsService;
 import com.example.lca.validator.RequestValidator;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 public class LcsController {
-    LcsService lcsService;
-    RequestValidator requestValidator;
-
-    @Autowired
-    public LcsController(LcsService lcsService, RequestValidator requestValidator) {
-        this.lcsService = lcsService;
-        this.requestValidator = requestValidator;
-    }
+    private final LcsService lcsService;
+    private final RequestValidator requestValidator;
 
     @PostMapping("/lcs")
-    public ResponseEntity<LcsResponse> getLca(@RequestBody LcsRequest lcsRequest) throws Exception {
+    public LcsResponse getLca(@RequestBody(required = false) LcsRequest lcsRequest){
 
         requestValidator.validateRequest(lcsRequest);
         return lcsService.getLca(lcsRequest);

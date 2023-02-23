@@ -1,4 +1,4 @@
-package com.example.lca.Exception;
+package com.example.lca.exception;
 
 public class RequestException extends RuntimeException{
     public RequestException(String message) {

@@ -1,16 +1,19 @@
 package com.example.lca.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExceptionResponse {
-    private final String message;
-    private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;
+    private String message;
+    private HttpStatus httpStatus;
 }
 

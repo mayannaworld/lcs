@@ -3,16 +3,17 @@ package com.example.lca.service;
 import com.example.lca.models.LcsRequest;
 import com.example.lca.models.LcsResponse;
 import com.example.lca.models.StringData;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Service
 public class LcsService {
-    public ResponseEntity<LcsResponse> getLca(LcsRequest lcsRequest) throws Exception {
+    public LcsResponse getLca(LcsRequest lcsRequest){
 
         List<String> stringList = lcsRequest
                 .getSetOfStrings()
@@ -46,11 +47,11 @@ public class LcsService {
         return outputMapper(out);
     }
 
-    private ResponseEntity<LcsResponse> outputMapper(Set<String> out) {
+    private LcsResponse outputMapper(Set<String> out) {
         LcsResponse lcsResponse = new LcsResponse();
         List<StringData> stringDataList = out.stream().map(st -> StringData.builder().value(st).build()).collect(Collectors.toList());
         lcsResponse.setLcs(stringDataList);
-        return new ResponseEntity<>(lcsResponse, HttpStatus.OK);
+        return lcsResponse;
     }
 
     private List<String> generateSubStrings(String s) {

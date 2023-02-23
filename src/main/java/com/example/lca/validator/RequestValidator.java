@@ -1,6 +1,6 @@
 package com.example.lca.validator;
 
-import com.example.lca.Exception.RequestException;
+import com.example.lca.exception.RequestException;
 import com.example.lca.models.LcsRequest;
 import com.example.lca.models.StringData;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class RequestValidator {
 
         for (StringData sd : lcsRequest.getSetOfStrings()){
             if(!stringsSet.add(sd.getValue())){
-                throw new RequestException("The  strings supplied must be unique");
+                throw new RequestException("The strings supplied must be unique");
             }
         }
     }
